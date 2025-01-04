@@ -1,6 +1,26 @@
 <template>
   <MainLayout>
     <template #main>
+      <div v-if="showPopup"
+        class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 animate-fade font-poppins">
+        <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Recuperación de Contraseña</h2>
+            <button @click="togglePopup" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <form>
+            <div class="mb-4">
+              <label for="email" class="block text-gray-700">Correo Electrónico</label>
+              <input type="email" id="email" class="w-full px-3 py-2 border rounded"
+                placeholder="Ingresa tu correo electrónico">
+            </div>
+            <button type="submit" class="w-full px-4 py-2 text-white bg-blue-500 rounded">Enviar enlace de
+              recuperación</button>
+          </form>
+        </div>
+      </div>
       <div class="flex justify-center rounded-lg shadow-md font-poppins">
         <div class="w-1/2 p-8">
 
@@ -32,11 +52,11 @@
               <hr class="w-full border-gray-300" />
             </div>
 
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-4 ">
 
-              <a class="text-blue-600" href="#">
+              <p @click="togglePopup" class="text-blue-600 cursor-pointer">
                 ¿Olvidaste la contraseña?
-              </a>
+              </p>
             </div>
             <button class="w-full p-2 text-white bg-blue-600 rounded">
               Iniciar sesión en tu cuenta
@@ -56,8 +76,13 @@
 
 <script lang="ts" setup>
 import MainLayout from '@/layouts/MainLayout.vue';
+import { ref } from 'vue';
 
+const showPopup = ref(false);
 
+const togglePopup = () => {
+  showPopup.value = !showPopup.value;
+}
 </script>
 
 <style scoped></style>

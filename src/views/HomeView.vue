@@ -82,14 +82,52 @@
           </div>
         </section>
       </div>
+      <h2 class="mb-4 text-4xl font-bold text-center">Noticias</h2>
+      <section class="flex flex-wrap justify-center space-x-4 space-y-3">
+        <NewsCard v-for="news in newsData" :key="news.title" v-bind="news" :desc="news.desc" :href="news.href"
+          :img="news.img" :title="news.title" />
+      </section>
     </template>
   </MainLayout>
 </template>
 
 <script lang="ts" setup>
 import HomeCard from '@/components/HomeCard.vue';
+import NewsCard from '@/components/NewsCard.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
 
+const newsData = [
+  {
+    title: "Reconocen a 30 buenos policías",
+    desc: "Entregan reconocimientos a policías municipales",
+    img: "https://oem.com.mx/elsoldeleon/img/20194858/1539033237/BASE_LANDSCAPE/1900/ALAS..caro.webp",
+    href: "https://oem.com.mx/elsoldeleon/local/reconocen-a-30-buenos-policias-20213785"
+  },
+  {
+    title: "10 maneras para ser un buen vecino",
+    desc: "Un año después de instalarnos en nuestra nueva casa, se nos ocurrió hacer una pequeña fiesta informal en el vecindario e invitar a los vecinos que conocíamos, unas 15 o 20 personas.",
+    img: "https://www.cru.org/mx/es/crecer-y-equipar/vida-y-relaciones/10-ways-to-be-a-good-neighbor/_jcr_content/image.transform/Cru704x396/img.jpg",
+    href: "https://www.cru.org/mx/es/crecer-y-equipar/vida-y-relaciones/10-ways-to-be-a-good-neighbor.html"
+  },
+  {
+    title: "Reconocen a especialistas del IMSS por sobresalir en atención al COVID-19",
+    desc: "En ceremonia institucional del Día del Médico, se entregaron los premios “Dr. Jesús Kumate Rodríguez”, al Mérito Médico en la Pandemia por COVID-19, y Atención Médica de Calidad.",
+    img: "https://www.imss.gob.mx/sites/all/statics/styles/flexslider_full/public/i2f_news/1_107.jpg?itok=vvVwuZ5Z",
+    href: "https://www.imss.gob.mx/prensa/archivo/202010/726"
+  },
+  {
+    title: "Por qué nos volvemos mejores como amigos cuando nos hacemos mayores",
+    desc: "¿Qué prefieres, conocer a una gran cantidad de gente nueva o pasar el tiempo con un pequeño círculo de amigos cercanos? Podrías pensar que la respuesta depende de si tu naturaleza es más extrovertida o introvertida. Pero hay otro factor que, aunque poco conocido, moldea nuestras preferencias sociales: la edad.",
+    img: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/4d32/live/e0635bd0-bb15-11ef-aff0-072ce821b6ab.jpg.webp",
+    href: "https://www.bbc.com/mundo/articles/cdx95k0r10no"
+  },
+  {
+    title: "¿Qué es lo que hace un buen maestro?",
+    desc: "Investigación tras investigación demuestran que el factor más importante para determinar la calidad de la educación de un niño es la calidad de su maestro.",
+    img: "https://www.greatschools.org/gk/wp-content/uploads/2009/06/Great-teacher-Spanish.jpg",
+    href: "https://www.greatschools.org/gk/articles/que-es-lo-que-hace-un-buen-maestro/?lang=es"
+  }
+];
 
 </script>
 

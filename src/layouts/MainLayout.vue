@@ -1,7 +1,7 @@
 <template>
   <header class="sticky top-0 z-50">
     <nav class="w-full border-gray-200 bg-slate-100 bg-opacity-70 dark:bg-gray-900 backdrop-blur-lg">
-      <img src="https://medicinaparadiabetes.com/assets/ssl-Cjd7i8VT.png" class="absolute left-0 h-8 top-5" alt="">
+      <img src="https://medicinaparadiabetes.com/assets/ssl-Cjd7i8VT.png" class="absolute h-8 left-1 top-5" alt="">
 
       <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <a class="flex items-center rtl:space-x-reverse">

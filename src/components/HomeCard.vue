@@ -64,14 +64,14 @@
 
       <!-- Botones -->
       <div class="absolute flex space-x-4 bottom-2 left-8">
-        <button
+        <RouterLink :to="{ name: 'login' }"
           class="px-6 py-3 text-white rounded-lg shadow-lg bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:shadow-xl hover:from-blue-500 hover:to-blue-700">
           Iniciar Sesión
-        </button>
-        <button
+        </RouterLink>
+        <RouterLink :to="{ name: 'register' }"
           class="px-6 py-3 text-white rounded-lg shadow-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:shadow-xl hover:from-green-500 hover:to-green-700">
           Registrarse
-        </button>
+        </RouterLink>
       </div>
     </section>
 
@@ -206,6 +206,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RouterLink } from 'vue-router';
 import InfoSection from './InfoSection.vue';
 
 
