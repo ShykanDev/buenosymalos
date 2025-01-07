@@ -3,10 +3,28 @@
     <!-- Botones arriba centrados -->
     <hr class="my-2" id="roles">
     <hr class="my-5 ">
+    <!-- Categorias -->
+    <div class="w-full px-4">
+      <div class="relative">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+          <i class="text-gray-500 fas fa-search"></i>
+        </span>
+        <input type="text" v-model="roleQuery"
+          class="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg font-poppins focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="Buscar categoría...">
+        <button class="absolute inset-y-0 right-0 flex items-center px-6 pr-3 bg-cyan-600 rounded-tr-xl rounded-br-xl">
+          <i class="text-white fas fa-search "></i>
+        </button>
+      </div>
+    </div>
     <section class="w-full px-4 py-4">
+      <h2 v-show="rolesFiltered.length === 0" class="text-center font-poppins">
+        <i class="ml-2 text-yellow-600 fas fa-question-circle"></i>
+        Categoria no encontrada, intente de nuevo.
+      </h2>
       <div class="flex flex-wrap justify-center space-x-4">
-        <a href="#cards" @click="sysValues.setCurrentRole(item.name)" v-for="item in roles" :key="item.name"
-          class="relative px-4 py-2 my-2 text-white transition-transform duration-100 ease-in-out bg-teal-700 rounded-md hover:bg-sky-900 hover:scale-105"
+        <a href="#cards" @click="sysValues.setCurrentRole(item.name)" v-for="item in rolesFiltered" :key="item.name"
+          class="relative px-4 py-2 my-2 text-white transition-transform duration-100 ease-in-out bg-teal-700 rounded-md animate-fade hover:bg-sky-900 hover:scale-105"
           :class="sysValues.getCurrentRole === item.name ? 'bg-sky-900 border-2 border-sky-200 animate-fade' : ''">
           <div
             class="absolute w-full h-full text-center transition-opacity duration-200 ease-out opacity-0 hover:opacity-100 font-poppins">
@@ -25,7 +43,8 @@
     <!-- Lista de Cards -->
     <section class="flex flex-col w-full space-y-4 animate-fade min-h-dvh" :key="sysValues.getCurrentRole">
       <article class="sticky right-0 z-10 px-5 top-24 font-poppins">
-        <a href="#roles" class="p-1 text-white bg-green-900 border-2 border-white rounded-md hover:bg-green-800">Volver
+        <a href="#roles"
+          class="p-1 text-white transition-all border-2 border-white rounded-md bg-rose-600 hover:bg-rose-800 hover:scale-110">Volver
           a categorias
           <i class="ml-2 fas fa-arrow-up"></i>
         </a>
@@ -45,7 +64,9 @@
               sysValues.getCurrentRole === 'Plataformas digitales' ? 'buenas' : 'buenos'
           }}
         </h2>
-        <h3 class="px-2 text-center text-cyan-800">{{ sysValues.getCurrentRoleInfo.buenos.title }}</h3>
+        <h3 class="px-2 py-2 text-2xl text-center underline text-cyan-900">{{ sysValues.getCurrentRoleInfo.buenos.title
+          }}
+        </h3>
         <h2 class="text-center font-poppins">{{ sysValues.getCurrentRoleInfo.buenos.description }}</h2>
         <h4 class="my-4 text-3xl text-center text-green-700">Casos en la vida real</h4>
         <div v-for="(example, index) in sysValues.getCurrentRoleInfo.buenos.examples" :key="index"
@@ -74,8 +95,11 @@
               sysValues.getCurrentRole === 'Plataformas digitales' ? 'malas' : 'malos'
           }}
         </h2>
-        <h3 class="px-2 text-center text-cyan-800">{{ sysValues.getCurrentRoleInfo.malos.title }}</h3>
-        <h2 class="text-sm font-poppins">{{ sysValues.getCurrentRoleInfo.malos.description }}</h2>
+        <h3 class="px-2 py-2 text-2xl text-center underline text-cyan-900 font-poppins">{{
+          sysValues.getCurrentRoleInfo.malos.title }}
+        </h3>
+        <h2 class="text-center font-poppins">{{ sysValues.getCurrentRoleInfo.malos.description }}</h2>
+
         <h4 class="my-4 text-3xl text-center text-orange-700">Casos en la vida real</h4>
         <div v-for="(example, index) in sysValues.getCurrentRoleInfo.malos.examples" :key="index"
           class="flex w-full p-1 mx-auto my-2 bg-white rounded-md shadow-lg max-h-60 ">
@@ -93,6 +117,11 @@
 
 <script lang="ts" setup>
 import { useSystemValues } from '@/stores/sytemValues';
+import { computed, ref } from 'vue';
+
+
+
+
 
 const roles = [
   {
@@ -296,6 +325,17 @@ const roles = [
     "icon": "fas fa-globe"
   }
 ]
+
+const rolesSorted = ref(roles);
+
+const roleQuery = ref('');
+
+const rolesFiltered = computed(() => {
+  return rolesSorted.value.filter((role) => {
+    return role.name.toLowerCase().includes(roleQuery.value.toLowerCase());
+  });
+});
+
 const sysValues = useSystemValues();
 
 </script>

@@ -36,13 +36,15 @@
               <label class="block text-gray-700" for="email">
                 Correo electrónico
               </label>
-              <input class="w-full p-2 border rounded" id="email" placeholder="nombre@empresa.com" type="email" />
+              <input v-model="email" class="w-full p-2 border rounded" id="email" placeholder="nombre@empresa.com"
+                type="email" />
             </div>
             <div class="mb-4">
               <label class="block text-gray-700" for="password">
                 Contraseña
               </label>
-              <input class="w-full p-2 border rounded" id="password" placeholder="••••••••" type="password" />
+              <input v-model="password" class="w-full p-2 border rounded" id="password" placeholder="••••••••"
+                type="password" />
             </div>
             <div class="flex items-center justify-between mb-4">
               <hr class="w-full border-gray-300" />
@@ -58,7 +60,7 @@
                 ¿Olvidaste la contraseña?
               </p>
             </div>
-            <button class="w-full p-2 text-white bg-blue-600 rounded">
+            <button @click.prevent="handleLogin" type="submit" class="w-full p-2 text-white bg-blue-600 rounded">
               Iniciar sesión en tu cuenta
             </button>
           </form>
@@ -78,10 +80,57 @@
 import MainLayout from '@/layouts/MainLayout.vue';
 import { ref } from 'vue';
 
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css'; // for React, Vue and Svelte
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useSystemValues } from '@/stores/sytemValues';
+import { useRouter } from 'vue-router';
+
+// Create an instance of Notyf
+const notyf = new Notyf();
+
 const showPopup = ref(false);
 
 const togglePopup = () => {
   showPopup.value = !showPopup.value;
+}
+
+const email = ref('');
+const password = ref('');
+const router = useRouter();
+const auth = getAuth();
+
+const handleLogin = async () => {
+  // verify email and password
+  if (!email.value || !password.value) {
+    notyf.error('Por favor rellena todos los campos');
+    return;
+  }
+  try {
+
+    const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
+    const user = userCredential.user;
+    if (user) {
+      notyf.success({
+        message: `${user.displayName} le damos la bienvenida nuevamente a buenosymalos.com`,
+        dismissible: true,
+        duration: 2000,
+        position: {
+          x: 'center',
+          y: 'top'
+        }
+      }
+      );
+      useSystemValues().setUserAuth(true);
+      setTimeout(() => {
+        router.push({ name: 'comments' });
+        notyf.success('Ahora puede comentar');
+      }, 2000);
+    }
+  } catch (error) {
+    console.log(error);
+    notyf.error('Error al iniciar sesión');
+  }
 }
 </script>
 

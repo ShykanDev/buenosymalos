@@ -3,6 +3,7 @@ import { defineStore, storeToRefs } from 'pinia'
 export const useSystemValues = defineStore('systemValues', {
   state: () => ({
     currentRole: 'Policías',
+    isUserAuth: false,
     policías: {
       buenos: {
         title: 'Conozca el trabajo ejemplar de los policías comprometidos con la justicia',
@@ -3056,7 +3057,6 @@ export const useSystemValues = defineStore('systemValues', {
     getCurrentRoleInfo: (state): boolean => {
       // Accede a la propiedad del rol actual
       const currentRoleData = state[state.currentRole.toLowerCase().split(' ').join('')]
-
       // Verifica si existe la propiedad y la retorna (usualmente 'buenos' o 'malos')
       if (currentRoleData) {
         return currentRoleData
@@ -3065,10 +3065,14 @@ export const useSystemValues = defineStore('systemValues', {
       // Si no se encuentra la propiedad, devuelve 'false' o lo que consideres adecuado
       return false
     },
+    getIsUserAuth: (state): boolean => state.isUserAuth,
   },
   actions: {
     setCurrentRole(role: string): void {
       this.currentRole = role
+    },
+    setUserAuth(status: boolean): void {
+      this.isUserAuth = status
     },
   },
 })

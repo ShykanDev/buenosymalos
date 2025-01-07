@@ -68,13 +68,12 @@
               </div>
             </a>
             <a class="relative block w-full overflow-hidden bg-white rounded-lg shadow-md md:w-96"
-              href="https://www.asesorahogar.com/">
+              href="https://www.marcasbuenas.com/">
               <img alt="Imagen representativa de nanadomestica.com sobre experiencias de nanas domésticas"
-                class="object-cover w-full h-48" height="300"
-                src="https://i.ibb.co/x66r2Rg/Picsart-24-12-10-23-45-48-253.png" width="400" />
+                class="object-cover w-full h-48" height="300" src="https://marcasbuenas.com/img/mc.jpg" width="400" />
               <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                 <div class="p-4 text-lg font-bold text-center text-white">
-                  nanadomestica.com - Experiencias de nanas domésticas. Invita a los usuarios a comentar y compartir sus
+                  marcasbuenas.com - Experiencias de marcas buenas y malas. Invita a los usuarios a comentar y compartir sus
                   experiencias, tanto buenas como malas.
                 </div>
               </div>

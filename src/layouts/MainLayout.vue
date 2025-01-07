@@ -1,9 +1,9 @@
 <template>
   <header class="sticky top-0 z-50">
     <nav class="w-full border-gray-200 bg-slate-100 bg-opacity-70 dark:bg-gray-900 backdrop-blur-lg">
-      <img src="https://medicinaparadiabetes.com/assets/ssl-Cjd7i8VT.png" class="absolute h-8 left-1 top-5" alt="">
+      <img src="https://medicinaparadiabetes.com/assets/ssl-Cjd7i8VT.png" class="absolute h-14 left-1 top-2" alt="">
 
-      <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
+      <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 ml-12">
         <a class="flex items-center rtl:space-x-reverse">
           <span class="self-center text-2xl font-semibold text-cyan-600">buenos</span>
           <span class="self-center text-2xl font-semibold text-emerald-800">y</span>
@@ -11,9 +11,9 @@
           <span class="self-center text-2xl font-semibold text-gray-500">.com</span>
         </a>
 
-        <div class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
+        <div v-if="!useSystemValues().getIsUserAuth" class="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
           <RouterLink :to="{ name: 'login' }"
-            class="p-2 mr-2 border-[1px] rounded-full font-poppins bg-white border-sky-800 bg-slate-200 hover:bg-slate-300">
+            class="p-2 mr-2 border-[1px] rounded-full font-poppins bg-white border-sky-800  hover:bg-slate-300">
             Iniciar Sesion
             <i class="fas fa-user text-sky-900"></i>
           </RouterLink>
@@ -120,6 +120,8 @@
 </template>
 
 <script lang="ts" setup>
+import { useSystemValues } from '@/stores/sytemValues';
+
 
 </script>
 
