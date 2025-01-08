@@ -63,7 +63,7 @@
       </div>
 
       <!-- Botones -->
-      <div class="absolute flex space-x-4 bottom-2 left-8">
+      <div v-show="!useSystemValues().getIsUserAuth" class="absolute flex space-x-4 bottom-2 left-8">
         <RouterLink :to="{ name: 'login' }"
           class="px-6 py-3 text-white rounded-lg shadow-lg bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:shadow-xl hover:from-blue-500 hover:to-blue-700">
           Iniciar Sesión
@@ -208,6 +208,7 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router';
 import InfoSection from './InfoSection.vue';
+import { useSystemValues } from '@/stores/sytemValues';
 
 
 </script>

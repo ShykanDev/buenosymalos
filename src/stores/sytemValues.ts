@@ -4,6 +4,7 @@ export const useSystemValues = defineStore('systemValues', {
   state: () => ({
     currentRole: 'Policías',
     isUserAuth: false,
+    userName: '',
     policías: {
       buenos: {
         title: 'Conozca el trabajo ejemplar de los policías comprometidos con la justicia',
@@ -3050,6 +3051,82 @@ export const useSystemValues = defineStore('systemValues', {
         ],
       },
     },
+    otros: {
+      buenos: {
+        title: 'Ejemplos de impacto positivo en diversas áreas',
+        description:
+          'Estos ejemplos muestran cómo acciones, innovaciones o movimientos han causado un cambio positivo en el mundo, inspirando a otros a seguir su ejemplo y construyendo un futuro mejor.',
+        examples: [
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/947ae9b5-cb8f-4d77-97a8-6a62136b994f.jpeg',
+            title: 'Innovaciones tecnológicas que transformaron la vida',
+            description:
+              'El desarrollo de tecnologías como la energía solar o los avances en inteligencia artificial han revolucionado el modo en que interactuamos con el mundo, mejorando la eficiencia, reduciendo costos y ayudando a combatir problemas globales como el cambio climático. La energía solar, por ejemplo, ha permitido a comunidades remotas acceder a la electricidad de manera sostenible, mejorando su calidad de vida y reduciendo la dependencia de combustibles fósiles. Por otro lado, la inteligencia artificial ha transformado sectores como la medicina, permitiendo diagnósticos más precisos y tratamientos personalizados, y ha optimizado procesos industriales, aumentando la productividad y reduciendo el desperdicio.',
+          },
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/9cd4842c-5180-4072-9c73-d0ccb01acc52.jpeg',
+            title: 'Movimientos sociales por la igualdad',
+            description:
+              'Iniciativas que luchan por la igualdad de derechos, la justicia social y la inclusión han generado grandes cambios en diversas sociedades, promoviendo la aceptación y el respeto por todas las personas sin importar su origen o identidad. Movimientos como el de los derechos civiles en Estados Unidos o el feminismo a nivel global han logrado avances significativos en la legislación y en la conciencia pública, combatiendo la discriminación y promoviendo la igualdad de oportunidades. Estos movimientos han inspirado a generaciones a luchar por un mundo más justo y equitativo, donde todas las personas puedan vivir con dignidad y respeto.',
+          },
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/027c3af6-de02-4ce5-a37e-ed889d2a5b22.jpeg',
+            title: 'Proyectos que protegen el medio ambiente',
+            description:
+              'Iniciativas para preservar los ecosistemas naturales y promover la sostenibilidad, como la creación de reservas naturales o proyectos de conservación marina, han tenido un impacto directo en la preservación de la biodiversidad y el futuro del planeta. Estos proyectos no solo protegen especies en peligro de extinción, sino que también restauran hábitats degradados y promueven prácticas sostenibles que benefician tanto al medio ambiente como a las comunidades locales. La conservación de ecosistemas es esencial para mantener el equilibrio natural y asegurar la supervivencia de innumerables especies, contribuyendo a un futuro más saludable y sostenible para todos.',
+          },
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/d4563184-3f28-43ea-a6b7-f72df085e929.jpeg',
+            title: 'Investigación científica para un mundo mejor',
+            description:
+              'Los avances en medicina, física, y otras ramas de la ciencia han permitido resolver problemas complejos, desde la creación de tratamientos para enfermedades hasta la mejora de nuestras capacidades para explorar el espacio o resolver desafíos globales. La investigación científica ha llevado al desarrollo de vacunas que han erradicado enfermedades mortales, como la viruela, y ha permitido avances en la tecnología espacial que nos han dado una mejor comprensión del universo. Estos logros científicos no solo mejoran la calidad de vida, sino que también abren nuevas posibilidades para el futuro, inspirando a nuevas generaciones de científicos a seguir explorando y descubriendo.',
+          },
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/8d4efaa4-5db1-4b5c-af68-eb5c54670df3.jpeg',
+            title: 'Cultura de paz y cooperación internacional',
+            description:
+              'Esfuerzos globales por promover la paz y resolver conflictos mediante la diplomacia han permitido salvar miles de vidas y evitar escaladas de violencia, demostrando que la cooperación entre naciones puede prevalecer sobre la confrontación. Organizaciones internacionales como las Naciones Unidas han jugado un papel crucial en la mediación de conflictos y la promoción de la paz, facilitando acuerdos que han llevado al cese de hostilidades y a la reconstrucción de sociedades afectadas por la guerra. Estos esfuerzos han demostrado que la paz es posible y que la cooperación internacional es esencial para construir un mundo más seguro y estable.',
+          },
+        ],
+      },
+      malos: {
+        title: 'Ejemplos de impacto negativo en diversas áreas',
+        description:
+          'En estos ejemplos, acciones o decisiones han generado consecuencias negativas significativas para la sociedad, el medio ambiente o las relaciones humanas, creando desafíos difíciles de superar.',
+        examples: [
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/05ead75a-90f3-4617-8529-e999e1257cf8.jpeg',
+            title: 'Destrucción de ecosistemas naturales',
+            description:
+              'La deforestación masiva y la contaminación de ríos y océanos han causado daños irreparables a la biodiversidad, poniendo en peligro especies y alterando el equilibrio natural que sustenta la vida en el planeta. La deforestación, impulsada por la agricultura intensiva y la tala ilegal, ha destruido vastas áreas de bosques tropicales, eliminando hábitats cruciales para muchas especies y contribuyendo al cambio climático. La contaminación de los océanos, debido a vertidos de petróleo y plásticos, ha dañado ecosistemas marinos y afectado la cadena alimentaria, poniendo en peligro la supervivencia de muchas especies marinas y la salud de los océanos.',
+          },
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/f53e57bd-0cec-4317-9ca4-3cbac84ad918.jpeg',
+            title: 'Conflictos armados con consecuencias humanitarias',
+            description:
+              'Guerras y enfrentamientos violentos han dejado millones de personas desplazadas y traumatizadas, destruyendo infraestructuras vitales y generando crisis humanitarias de larga duración que son difíciles de resolver. Estos conflictos no solo causan pérdidas de vidas humanas, sino que también destruyen comunidades enteras, dejando a las personas sin hogar y sin acceso a servicios básicos como la salud y la educación. Las crisis humanitarias resultantes requieren esfuerzos internacionales masivos para proporcionar ayuda y reconstruir las áreas afectadas, pero a menudo dejan cicatrices duraderas en las sociedades y en las vidas de las personas afectadas.',
+          },
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/58bafb12-6abd-48b8-88ca-83837b14b9f7.jpeg',
+            title: 'Impacto de la contaminación industrial',
+            description:
+              'Las emisiones de gases contaminantes y los desechos tóxicos de fábricas han dañado tanto a las comunidades cercanas como al medio ambiente, afectando la salud pública y alterando ecosistemas vitales para el sustento humano. La contaminación industrial ha sido vinculada a una variedad de problemas de salud, incluyendo enfermedades respiratorias y cáncer, afectando especialmente a las comunidades más vulnerables que viven cerca de las fábricas. Además, los desechos tóxicos pueden contaminar suelos y cuerpos de agua, afectando la agricultura y la pesca, y poniendo en peligro la seguridad alimentaria de muchas personas.',
+          },
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/a3c6f6da-970e-444f-95c5-c43a75a08a72.jpeg',
+            title: 'Crisis económicas por decisiones erróneas',
+            description:
+              'Malas decisiones financieras y económicas, como la especulación irresponsable o la mala gestión de recursos, han provocado crisis económicas que afectan a millones de personas, reduciendo su calidad de vida y su acceso a recursos esenciales. La crisis financiera de 2008, por ejemplo, fue el resultado de prácticas de préstamo irresponsables y la especulación en el mercado inmobiliario, lo que llevó al colapso de grandes instituciones financieras y a una recesión global. Estas crisis económicas no solo afectan a los individuos, sino que también tienen un impacto negativo en las economías nacionales, aumentando el desempleo y la pobreza, y creando un ambiente de incertidumbre y desconfianza.',
+          },
+          {
+            img: 'https://storage.googleapis.com/a1aa/image/6b6059fc-e670-4975-9984-415bad3b7916.jpeg',
+            title: 'Violaciones de derechos humanos',
+            description:
+              'Acciones que violan los derechos fundamentales de las personas, como la opresión de minorías o la explotación laboral, han causado sufrimiento a muchas personas, afectando su dignidad y perpetuando la desigualdad en diversas partes del mundo. La explotación laboral, que incluye prácticas como el trabajo forzado y el trabajo infantil, afecta a millones de personas en todo el mundo, especialmente en industrias como la manufactura y la agricultura. Estas violaciones de derechos humanos no solo afectan a los individuos, sino que también tienen un impacto negativo en las sociedades, perpetuando la pobreza y la desigualdad, y creando un ciclo de injusticia y sufrimiento.',
+          },
+        ],
+      },
+    },
   }),
   getters: {
     getCurrentRole: (state): string => state.currentRole,
@@ -3066,6 +3143,7 @@ export const useSystemValues = defineStore('systemValues', {
       return false
     },
     getIsUserAuth: (state): boolean => state.isUserAuth,
+    getUserName: (state): string => state.userName,
   },
   actions: {
     setCurrentRole(role: string): void {
@@ -3073,6 +3151,9 @@ export const useSystemValues = defineStore('systemValues', {
     },
     setUserAuth(status: boolean): void {
       this.isUserAuth = status
+    },
+    setUserName(name: string): void {
+      this.userName = name
     },
   },
 })

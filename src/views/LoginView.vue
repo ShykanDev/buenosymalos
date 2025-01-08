@@ -36,7 +36,7 @@
               <label class="block text-gray-700" for="email">
                 Correo electrónico
               </label>
-              <input v-model="email" class="w-full p-2 border rounded" id="email" placeholder="nombre@empresa.com"
+              <input v-model="email" class="w-full p-2 border rounded" id="email" placeholder="nombre@correo.com"
                 type="email" />
             </div>
             <div class="mb-4">
@@ -126,6 +126,7 @@ const handleLogin = async () => {
         router.push({ name: 'comments' });
         notyf.success('Ahora puede comentar');
       }, 2000);
+      useSystemValues().setUserName(user.displayName);
     }
   } catch (error) {
     console.log(error);

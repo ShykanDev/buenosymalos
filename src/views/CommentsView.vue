@@ -7,7 +7,7 @@
           <a href="#comentar"
             :class="role.name.toLowerCase() == roleSelected.toLowerCase() ? 'bg-sky-900 text-white' : 'bg-white'"
             @click="setRole(role.name)" v-for="role in roles" :key="role.name"
-            class="flex items-center justify-center p-4 rounded-lg shadow-md ">
+            class="flex items-center justify-center p-4 rounded-lg shadow-md hover:bg-emerald-600 hover:text-white">
             <i class="mr-2 text-2xl" :class="role.icon"></i>
             {{ role.name }}
           </a>
@@ -22,6 +22,11 @@
                   :class="roles.find(r => r.name === roleSelected)?.icon"></i></span>
             </p>
           </div>
+          <section v-if="comments" class="flex flex-wrap justify-around space-y-4">
+            <CommentsCard v-for="comment in comments.filter(c => c.category === roleSelected)" :key="comment.id"
+              :text="comment.text" :name="comment.name" :category="comment.category" :date="comment.date" />
+
+          </section>
         </div>
         <div class="mt-8">
           <h2 class="mb-4 text-2xl font-semibold">Añadir un comentario</h2>
@@ -30,6 +35,7 @@
               <label for="comment" class="block mb-2 text-lg font-medium"><i
                   class="mr-2 fas fa-comment-dots"></i>Escribe tu comentario</label>
               <textarea v-model="comment" id="comment" rows="4"
+                placeholder="Mi comentario es sobre los supermercados, el supermercado en el que yo asisto tiene los precios más bajos, pero el supermercado a 3 calles tiene los precios mas altos..."
                 class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
             </div>
             <button @click="submitComment"
@@ -45,17 +51,35 @@
 
 <script lang="ts" setup>
 import MainLayout from '@/layouts/MainLayout.vue';
-import { ref } from 'vue';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { onUnmounted, ref } from 'vue';
+import { getFirestore, collection, addDoc, onSnapshot } from 'firebase/firestore';
+import CommentsCard from '@/components/CommentsCard.vue';
 const db = getFirestore()
 // Firestore setup
 // const db = getFirestore();
 
 // Reactive variables
 const comment = ref('');
-const error = ref('');
-const success = ref(false);
 const roleSelected = ref('');
+
+const comments = ref();
+
+const collectionRef = collection(db, 'comments');
+
+const unsuscribe = onSnapshot(collectionRef, (snapshot) => {
+  comments.value = [];
+  snapshot.docChanges().forEach((change) => {
+    comments.value.push({
+      id: change.doc.id,
+      name: change.doc.data().name,
+      category: change.doc.data().category,
+      text: change.doc.data().text,
+      date: change.doc.data().createdAt
+    });
+  })
+}, (error) => console.log(error)
+
+);
 
 const setRole = (role: string) => {
   roleSelected.value = role
@@ -260,6 +284,11 @@ const roles = [
     "name": "Líderes históricos",
     "desc": "Visionarios vs autoritarios",
     "icon": "fas fa-globe"
+  },
+  {
+    "name": "Otros",
+    "desc": "Diversos roles y perspectivas",
+    "icon": "fas fa-ellipsis-h"
   }
 ]
 
@@ -272,8 +301,7 @@ const notyf = new Notyf();
 
 // Submit comment to Firestore
 const submitComment = async () => {
-
-  if (useSystemValues().getIsUserAuth) {
+  if (!useSystemValues().getIsUserAuth) {
     notyf.error({
       message: 'Debe iniciar sesión para comentar.',
       position: {
@@ -298,19 +326,20 @@ const submitComment = async () => {
       category: roleSelected.value,
       text: comment.value,
       createdAt: new Date(),
+      name: useSystemValues().getUserName
     });
 
     comment.value = '';
     notyf.open({
-      type: 'custom',
-      background: 'orange',
-      message: 'Comentario enviado correctamente, por seguridad no puede ser mostrado en plataformas temporales tales como Netlify o GitHub Pages.',
+      type: 'success',
+      background: 'green',
+      message: 'Comentario agregado correctamente.',
       position: {
         x: 'right',
         y: 'top',
       },
       duration: 8000
-    })
+    });
   } catch (e) {
     console.log(e);
     notyf.error('Error al enviar el comentario.');
@@ -318,6 +347,8 @@ const submitComment = async () => {
 
 };
 
+
+onUnmounted(() => unsuscribe());
 </script>
 
 <style scoped></style>

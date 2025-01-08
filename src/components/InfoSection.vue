@@ -25,7 +25,7 @@
       <div class="flex flex-wrap justify-center space-x-4">
         <a href="#cards" @click="sysValues.setCurrentRole(item.name)" v-for="item in rolesFiltered" :key="item.name"
           class="relative px-4 py-2 my-2 text-white transition-transform duration-100 ease-in-out bg-teal-700 rounded-md animate-fade hover:bg-sky-900 hover:scale-105"
-          :class="sysValues.getCurrentRole === item.name ? 'bg-sky-900 border-2 border-sky-200 animate-fade' : ''">
+          :class="sysValues.getCurrentRole === item.name ? 'bg-sky-900 border-2 border-sky-200 animate-pulse' : 'bg-emerald-800'">
           <div
             class="absolute w-full h-full text-center transition-opacity duration-200 ease-out opacity-0 hover:opacity-100 font-poppins">
             <p
@@ -46,7 +46,7 @@
         <a href="#roles"
           class="p-1 text-white transition-all border-2 border-white rounded-md bg-rose-600 hover:bg-rose-800 hover:scale-110">Volver
           a categorias
-          <i class="ml-2 fas fa-arrow-up"></i>
+          <i class="ml-2 fas fa-arrow-up animate-flip-up animate-infinite animate-duration-[5000ms]"></i>
         </a>
       </article>
 
@@ -323,6 +323,11 @@ const roles = [
     "name": "Líderes históricos",
     "desc": "Visionarios vs autoritarios",
     "icon": "fas fa-globe"
+  },
+  {
+    "name": "Otros",
+    "desc": "Diversos roles y perspectivas",
+    "icon": "fas fa-ellipsis-h"
   }
 ]
 
